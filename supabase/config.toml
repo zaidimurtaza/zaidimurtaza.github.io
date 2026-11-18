@@ -1,0 +1,5 @@
+# Only the bits this project uses. The portfolio has no database tables.
+[functions.agent]
+# Public endpoint: the static site calls it without a Supabase key. Abuse is limited by the
+# origin allowlist (ALLOWED_ORIGINS) and per-IP rate limits inside the handler.
+verify_jwt = false
