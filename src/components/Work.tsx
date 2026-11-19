@@ -10,7 +10,21 @@ const Arrow = () => (
 
 const isOwn = (p: Project) => p.kind === "Founder" || p.kind === "Co-founder";
 
-function Browser({ src, url, alt, priority }: { src: string; url?: string; alt: string; priority?: boolean }) {
+const shotAlt = (p: Project) => `${p.name} homepage${p.urlLabel ? ` at ${p.urlLabel}` : ""}: ${p.oneLiner}`;
+
+function Browser({
+  src,
+  url,
+  alt,
+  priority,
+  highlight,
+}: {
+  src: string;
+  url?: string;
+  alt: string;
+  priority?: boolean;
+  highlight?: string;
+}) {
   return (
     <figure className="browser">
       <div className="browser-bar" aria-hidden="true">
@@ -20,6 +34,7 @@ function Browser({ src, url, alt, priority }: { src: string; url?: string; alt: 
         <span>{url ?? "private"}</span>
       </div>
       <Image src={src} alt={alt} width={1280} height={800} sizes="(max-width: 960px) 100vw, 680px" priority={priority} />
+      {highlight && <figcaption className="browser-badge">{highlight}</figcaption>}
     </figure>
   );
 }
@@ -43,7 +58,7 @@ function CaseStudy({ p, flip }: { p: Project; flip: boolean }) {
   return (
     <article className="case" id={`project-${p.slug}`} data-flip={flip}>
       <div className="case-media">
-        {shot && <Browser src={shot} url={p.urlLabel} alt={`${p.name} live site`} />}
+        {shot && <Browser src={shot} url={p.urlLabel} alt={shotAlt(p)} highlight={p.metrics?.[0]} />}
       </div>
       <div className="case-body">
         <p className="case-kind">
@@ -51,15 +66,7 @@ function CaseStudy({ p, flip }: { p: Project; flip: boolean }) {
           {p.org && <span>{p.org}</span>}
         </p>
         <h3>{p.name}</h3>
-        <p className="case-one">{p.oneLiner}</p>
-        <p className="case-problem">{p.problem}</p>
-        <Flow slug={p.slug} />
-        <p className="case-arch">{p.architecture}</p>
-        <ul className="case-stack" aria-label="Stack">
-          {p.stack.map((s) => (
-            <li key={s}>{s}</li>
-          ))}
-        </ul>
+        <p className="case-one">{p.outcome}</p>
         {p.metrics && (
           <ul className="case-metrics" aria-label="Results">
             {p.metrics.map((m) => (
@@ -67,6 +74,17 @@ function CaseStudy({ p, flip }: { p: Project; flip: boolean }) {
             ))}
           </ul>
         )}
+        <p className="case-problem">{p.problem}</p>
+        <div className="case-how">
+          <h4>How it is built</h4>
+          <Flow slug={p.slug} />
+          <p className="case-arch">{p.architecture}</p>
+          <ul className="case-stack" aria-label="Stack">
+            {p.stack.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ul>
+        </div>
         <div className="case-links">
           {p.url && (
             <a className="btn btn-dark" href={p.url} target="_blank" rel="noreferrer">
@@ -90,7 +108,7 @@ function SmallCard({ p }: { p: Project }) {
   const shot = showcase[p.slug]?.shot;
   return (
     <article className="small" id={`project-${p.slug}`}>
-      {shot && <Browser src={shot} url={p.urlLabel} alt={`${p.name} live site`} />}
+      {shot && <Browser src={shot} url={p.urlLabel} alt={shotAlt(p)} />}
       <p className="case-kind">
         <span>{p.kind}</span>
         {p.org && <span>{p.org}</span>}
@@ -106,6 +124,7 @@ function SmallCard({ p }: { p: Project }) {
           <span className="pill pill-muted">{p.privateNote ?? "Private"}</span>
         )}
       </div>
+      <p className="small-outcome">{p.outcome}</p>
       <dl className="small-spec">
         <div>
           <dt>Problem</dt>
@@ -132,7 +151,7 @@ function SmallCard({ p }: { p: Project }) {
 }
 
 export default function Work() {
-  const featured = projects.filter((p) => p.featured || ["projectaal", "neverft"].includes(p.slug));
+  const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !featured.includes(p));
   return (
     <>

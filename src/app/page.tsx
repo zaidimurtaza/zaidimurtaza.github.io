@@ -50,8 +50,8 @@ export default function Home() {
           </a>
           <nav aria-label="Sections">
             <ul className="nav-links">
-              <li><a href="#work">Work</a></li>
               <li><a href="#proof">Clients</a></li>
+              <li><a href="#work">Work</a></li>
               <li><a href="#experience">Experience</a></li>
               <li><a href={profile.resume} target="_blank" rel="noreferrer">Résumé</a></li>
             </ul>
@@ -66,7 +66,7 @@ export default function Home() {
             <div className="hero-copy">
               <p className="hero-kicker">
                 <i className="status-dot" aria-hidden="true" />
-                Murtaza Zaidi, full-stack AI engineer. Open to new builds.
+                Murtaza Zaidi. I build AI agents and MVPs for founders and small teams.
               </p>
               <h1 id="hero-title">I build the whole product, from the database to the AI agent.</h1>
               <p className="hero-lede">
@@ -97,46 +97,6 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
-
-        <section className="section panel-sheet dark" id="work" aria-labelledby="work-title">
-          <div className="wrap">
-            <div className="section-head">
-              <h2 id="work-title">Live products, and how each one is built</h2>
-              <p>
-                Real screenshots of what is running today, the problem each one solves, and the path a request takes
-                through it.
-              </p>
-            </div>
-            <Work />
-          </div>
-        </section>
-
-        <section className="section caps-section" aria-labelledby="caps-title">
-          <div className="wrap">
-            <div className="section-head">
-              <h2 id="caps-title">What you can hand to Murtaza</h2>
-              <p>
-                One engineer who owns the product end to end: the model and its tools, the database and queues, the
-                billing, and the page the customer sees.
-              </p>
-            </div>
-            <div className="caps">
-              {capabilities.map((c) => (
-                <div className="cap" key={c.title}>
-                  <h3>{c.title}</h3>
-                  <p>{c.body}</p>
-                  <ul>
-                    {c.tools.map((t) => (
-                      <li key={t}>
-                        <span className="tag">{t}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -177,6 +137,58 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section className="section panel-sheet dark" id="work" aria-labelledby="work-title">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 id="work-title">Live products, and how each one is built</h2>
+              <p>
+                Real screenshots of what is running today, the problem each one solves, and the path a request takes
+                through it.
+              </p>
+            </div>
+            <Work />
+            <div className="work-cta">
+              <p>
+                <b>Want something like this for your product?</b>
+                <span>Tell me what you are building. A 15-minute call is enough to see if it is a fit.</span>
+              </p>
+              <div className="row">
+                <a className="btn btn-primary" href={profile.cal} target="_blank" rel="noreferrer">
+                  Book a 15-minute call
+                </a>
+                <AgentButton className="btn btn-ghost" prompt="I want to build something similar. What would it take?">Ask the agent</AgentButton>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section caps-section" aria-labelledby="caps-title">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 id="caps-title">What you can hand to Murtaza</h2>
+              <p>
+                One engineer who owns the product end to end: the model and its tools, the database and queues, the
+                billing, and the page the customer sees.
+              </p>
+            </div>
+            <div className="caps">
+              {capabilities.map((c) => (
+                <div className="cap" key={c.title}>
+                  <h3>{c.title}</h3>
+                  <p>{c.body}</p>
+                  <ul>
+                    {c.tools.map((t) => (
+                      <li key={t}>
+                        <span className="tag">{t}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

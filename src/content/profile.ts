@@ -14,7 +14,7 @@ export const profile = {
   summary:
     "I build AI products end to end, from the database schema to the agent's tool calls to the deploy. I have shipped for a YC-backed healthtech team in New York and an AdTech startup in Zurich and Stockholm, and I run my own products, DM IQ and BrandOye.",
   availability:
-    "Taking on a small number of freelance builds and fractional engineering roles. Usual first step is a 15-minute call.",
+    "I build AI agents and MVPs for founders and small teams, from the first call to production. Taking on a small number of builds and fractional engineering roles; the first step is a 15-minute call.",
 };
 
 export type Project = {
@@ -26,6 +26,7 @@ export type Project = {
   urlLabel?: string;
   extraLinks?: { label: string; url: string }[];
   oneLiner: string;
+  outcome: string; // the result in the client's terms, shown before the architecture
   problem: string;
   stack: string[];
   architecture: string;
@@ -37,6 +38,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "healos",
+    outcome: "Clinic staff spend less time on notes, phone intake and faxes, and more time with patients.",
     name: "HealOS",
     kind: "Engineer",
     org: "Attack Capital, YC-backed, New York",
@@ -53,6 +55,7 @@ export const projects: Project[] = [
   },
   {
     slug: "dmiq",
+    outcome: "Comments become qualified leads in the DMs while they are still warm, and one upload posts to 20 channels.",
     name: "DM IQ",
     kind: "Founder",
     url: "https://dmiq.site",
@@ -69,6 +72,7 @@ export const projects: Project[] = [
   },
   {
     slug: "brandoye",
+    outcome: "A small team plans, writes, publishes and measures its marketing in one place instead of four tools.",
     name: "BrandOye",
     kind: "Co-founder",
     url: "https://brandoye.com",
@@ -80,10 +84,10 @@ export const projects: Project[] = [
     architecture:
       "Next.js on Vercel; FastAPI and Postgres on a VPS behind Cloudflare, with separate web and scheduler workers. Every model call goes through one metered client that logs usage and checks credits. Social publishing runs through DM IQ's Partner API.",
     metrics: ["Web and mobile apps", "Every AI call metered against credits"],
-    featured: true,
   },
   {
     slug: "projectaal",
+    outcome: "Non-technical founders go from a prompt to a deployed app with login, a database and code they own.",
     name: "ProjectAAL",
     kind: "Client build",
     org: "for Bilal Junaid, Dubai",
@@ -99,6 +103,7 @@ export const projects: Project[] = [
   },
   {
     slug: "neverft",
+    outcome: "Football groups go from “In” and “+1” in a chat to a real game with teams and results, without leaving Discord or Slack.",
     name: "Never FT agent",
     kind: "Client build",
     org: "for Jimmy Zamani, North of Zero",
@@ -111,9 +116,11 @@ export const projects: Project[] = [
     architecture:
       "One platform-agnostic agent core with thin Discord and Slack adapters. Deterministic RSVP parsing runs before a single tool-calling model run, and the host confirms before anything is created. Login and in-Discord payments included.",
     metrics: ["2 chat platforms live", "317 automated tests"],
+    featured: true,
   },
   {
     slug: "peak-agent",
+    outcome: "Ad teams spot creative fatigue early and get fresh video creatives 50% faster.",
     name: "Peak Agent AI",
     kind: "Engineer",
     org: "AdTech, Zurich and Stockholm",
@@ -128,6 +135,7 @@ export const projects: Project[] = [
   },
   {
     slug: "digistall",
+    outcome: "Rural sellers get a working online store and tracked deliveries without a tech team.",
     name: "Digistall",
     kind: "Client build",
     org: "for Siyag Rural Market",
@@ -143,6 +151,7 @@ export const projects: Project[] = [
   },
   {
     slug: "adops",
+    outcome: "The team reads partner, geo and bundle performance in one dashboard instead of three.",
     name: "Ad-ops reporting hub",
     kind: "Client build",
     org: "for a programmatic media network in Asia",
@@ -156,6 +165,7 @@ export const projects: Project[] = [
   },
   {
     slug: "proceedit",
+    outcome: "A fintech trading platform got messaging and data APIs ready to put in front of its customers.",
     name: "Fintech messaging engine",
     kind: "Client build",
     org: "for proceedit, Barcelona",
@@ -204,7 +214,7 @@ export const testimonials: Testimonial[] = [
     role: "Co-founder, Attack Capital (YC-backed)",
     place: "New York",
     photo: "/people/kaushik.jpg",
-    valued: "Saw the agent serve 400+ users a week across 30,000+ chat sessions.",
+    valued: "Saw the agent serve 600+ users a week across 30,000+ chat sessions.",
     delivered: "A production AI receptionist and clinical notes editor, plus multiple EHR integrations.",
   },
   {

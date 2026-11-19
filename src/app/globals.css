@@ -442,3 +442,19 @@ a { color: inherit; }
 .book-switch { margin-top: 10px; width: 100%; background: transparent; border: 0; color: var(--mute); font: 500 0.84rem/1 var(--sans); padding: 8px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 .book-switch:hover { color: var(--paper); }
 .book form .btn { width: 100%; justify-content: center; }
+
+/* Results first: screenshot badge, outcome lines, "How it is built", and the work-section call to action */
+.browser { position: relative; }
+.browser-badge { position: absolute; left: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: #2f3cf5; color: #fff; font: 600 0.85rem/1 var(--sans); letter-spacing: -0.005em; box-shadow: 0 10px 24px -10px rgba(47,60,245,.7); }
+.browser-badge::before { content: ""; width: 6px; height: 6px; background: #fff; transform: rotate(45deg); }
+.case-one { font-weight: 500; }
+.case-how { margin: 0 0 22px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
+.case-how h4 { margin: 0 0 14px; font: 600 0.82rem/1 var(--sans); color: var(--faint); letter-spacing: 0.01em; }
+.case-how .case-stack { margin-bottom: 0; }
+.small-outcome { margin: 0; font-weight: 500; line-height: 1.45; }
+.work-cta { margin-top: clamp(56px, 7vw, 96px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; padding: clamp(22px, 3vw, 32px); border-radius: 20px; border: 1px solid var(--line); background: var(--ink-2); }
+.work-cta p { margin: 0; display: grid; gap: 6px; max-width: 52ch; }
+.work-cta b { font: 400 var(--step-2)/1.1 var(--serif); letter-spacing: -0.02em; }
+.work-cta span { color: var(--mute); }
+.work-cta .row { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 560px) { .browser-badge { left: 10px; bottom: 10px; font-size: 0.78rem; padding: 7px 10px; } }
